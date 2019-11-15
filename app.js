@@ -2,13 +2,18 @@ function onReady()  {
   const toDos = [];
   const addToDoForm = document.getElementById('addToDoForm');
 
+  toDoList.textContent = '';
+
   function createNewToDo() {
     const newToDoText = document.getElementById('newToDoText');
+    if (!newToDoText.value) { return; }
     toDos.push({
        title: newToDoText.value,
        complete: false
      });
      newToDoText.value = '';
+     renderTheUI();
+  }
   }
   function renderTheUI() {
     const toDoList = document.getElementById('toDoList');
@@ -16,6 +21,9 @@ function onReady()  {
       const newLi = document.createElement('li');
       const checkbox = document.createElement('input');
       checkbox.type = "checkbox";
+      newLi.textContent = toDo.title;
+      toDoList.appendChild(newLi);
+      newLi.appendChild(checkbox);
     });
   }
 
